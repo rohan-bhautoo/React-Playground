@@ -10,22 +10,23 @@ interface Todo {
 }
 
 const TodoList = () => {
-  const fetchTodos = () => {
-    axios
-      .get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => res.data);
+  const fetchTodos = async () => {
+    const res = await axios.get<Todo[]>(
+      "https://jsonplaceholder.typicode.com/todos"
+    );
+    return res.data;
   };
 
-  const { data } = useQuery({
+  const { data, error } = useQuery<Todo[], Error>({
     queryKey: ["todos"],
     queryFn: fetchTodos,
   });
 
-  //if (error) return <p>{error}</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <ul className="list-group">
-      {data?.map((todo: Todo) => (
+      {data?.map((todo) => (
         <li key={todo.id} className="list-group-item">
           {todo.title}
         </li>
