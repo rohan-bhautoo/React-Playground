@@ -16,7 +16,7 @@ const usePosts = (query: PostQuery) => {
   return useInfiniteQuery<Post[], Error>({
     queryKey: ["posts", query],
     initialPageParam: 1,
-    queryFn: ({ pageParam }) =>
+    queryFn: ({ pageParam }: any) =>
       axios
         .get("https://jsonplaceholder.typicode.com/posts", {
           params: {
