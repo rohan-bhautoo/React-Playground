@@ -1,5 +1,4 @@
-import { useContext, useReducer } from "react";
-import tasksReducer from "./reducers/tasksReducer";
+import { useContext } from "react";
 import TasksContext from "./contexts/taskContext";
 import AuthContext from "./contexts/authContext";
 
