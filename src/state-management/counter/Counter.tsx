@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 import useCounterStore from "./store";
+import { mountStoreDevtool } from "simple-zustand-devtools";
 
 const counter = () => {
   const { counter, increment, reset } = useCounterStore();
@@ -16,5 +17,8 @@ const counter = () => {
     </div>
   );
 };
+
+if (process.env.NODE_ENV === "development")
+  mountStoreDevtool("Counter Store", useCounterStore);
 
 export default counter;
